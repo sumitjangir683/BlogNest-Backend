@@ -3,15 +3,25 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 
 const app = express()
-const allowedOrigin =[process.env.CORS_ORIGIN,'https://blog-nest-frontend.vercel.app','http://localhost:5173']
-const corsOptions = {
-    origin: allowedOrigin, 
-    credentials: true, 
-  };
+// const allowedOrigin =[process.env.CORS_ORIGIN,'https://blog-nest-frontend.vercel.app','http://localhost:5173']
+// const corsOptions = {
+//     origin: allowedOrigin, 
+//     credentials: true, 
+//   };
   
- app.use(cors(corsOptions));
-app.options('*', cors());
+//  app.use(cors(corsOptions));
+// app.options('*', cors());
 
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  methods: 'GET,POST,PUT',
+  allowedHeaders: 'Content-Type',
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions)); 
 // app.use(cors({
 //     origin: process.env.CORS_ORIGIN,
 //     credentials: true
