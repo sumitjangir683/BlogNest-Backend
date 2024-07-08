@@ -10,6 +10,7 @@ const corsOptions = {
   };
   
  app.use(cors(corsOptions));
+app.options('*', cors());
 
 // app.use(cors({
 //     origin: process.env.CORS_ORIGIN,
