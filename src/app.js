@@ -3,7 +3,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 
 const app = express()
-const allowedOrigin =[process.env.CORS_ORIGIN,'https://blog-nest-frontend.vercel.app']
+const allowedOrigin =[process.env.CORS_ORIGIN,'https://blog-nest-frontend.vercel.app','http://localhost:5173']
 const corsOptions = {
     origin: allowedOrigin, 
     credentials: true, 
