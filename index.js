@@ -4,8 +4,8 @@ import {app} from "./src/app.js"
 dotenv.config({
     path: './.env'
 })
-app.get("/twitter", (req, res) => {
-    res.send("hello");
+app.get("/", (req, res) => {
+    res.send("Wlcome home");
 })
 
 connectDB()
