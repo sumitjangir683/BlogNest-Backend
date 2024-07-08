@@ -395,7 +395,7 @@ console.log(uploadedCoverImage);
    return res
        .status(200)
        .json(
-           new ApiResponse(200, updatedProfile, "Post updated Successfully")
+           new ApiResponse(200, updatedProfile, "Profile updated Successfully")
        )
 
 })
