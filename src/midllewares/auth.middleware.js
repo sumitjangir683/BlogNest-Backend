@@ -8,7 +8,7 @@ dotenv.config({
 })
 
 export const verifyJWT = asyncHandler(async(req,res,next) => {
- console.log(req.cookies);
+ //console.log(req.cookies);
     try {
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer","")
         //console.log(req.cookies);
