@@ -91,8 +91,8 @@ const registerUser = asyncHandler(async(req,res) => {
    }
     
    const options ={
-    httpOnly:false,
-    secure:false
+    httpOnly:true,
+    secure:true
    }
   return res
   .status(200)
