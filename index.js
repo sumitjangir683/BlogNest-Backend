@@ -5,7 +5,7 @@ dotenv.config({
     path: './.env'
 })
 app.get("/", (req, res) => {
-    res.send("Wlcome home");
+    res.send("Welcome Home");
 })
 
 connectDB()
