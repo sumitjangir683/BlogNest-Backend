@@ -13,7 +13,7 @@ dotenv.config({
 const options ={
     httpOnly:true,
     secure:true,
-     sameSite: 'None'
+    sameSite: 'None'
    }
 const generateAccessAndRefereshTokens = async(userId) => {
     try {
@@ -50,8 +50,8 @@ const registerUser = asyncHandler(async(req,res) => {
     if (existedUser) {
         throw new ApiError(409, "User with email or username already exists")
     }
-   console.log(email);
-   console.log(req.files)
+   // console.log(email);
+   // console.log(req.files)
     
    // console.log(req.files);
    const avatarLocalPath = req.files?.avatar[0].path;
