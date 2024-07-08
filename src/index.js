@@ -4,7 +4,7 @@ import {app} from "./app.js"
 dotenv.config({
     path: './.env'
 })
-app.get("/", (req, res) => {
+app.get("/twitter", (req, res) => {
     res.send("hello");
 })
 
