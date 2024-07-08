@@ -198,8 +198,8 @@ console.log(incomingRefreshToken);
         }
     
         const options = {
-            httpOnly: true,
-            secure: true
+            httpOnly: false,
+            secure: false
         }
     
         const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
