@@ -10,6 +10,11 @@ import dotenv from 'dotenv'
 dotenv.config({
     path: './.env'
 })
+const options ={
+    httpOnly:true,
+    secure:true,
+     sameSite: 'None'
+   }
 const generateAccessAndRefereshTokens = async(userId) => {
     try {
         const user = await User.findById(userId)
@@ -90,11 +95,7 @@ const registerUser = asyncHandler(async(req,res) => {
        throw new ApiError(500, "Something went wrong while registering the user")
    }
     
-   const options ={
-    httpOnly:true,
-    secure:true,
-     sameSite: 'None'
-   }
+   
   return res
   .status(200)
   .cookie("accessToken", accessToken,options)
@@ -129,11 +130,7 @@ const loginUser = asyncHandler(async(req,res) => {
     const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
    // console.log("login time", refreshToken);
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
-  const options ={
-    httpOnly:true,
-    secure:true,
-       sameSite: 'None'
-   }
+ 
    
   return res
   .status(200)
@@ -163,10 +160,6 @@ const logoutUser = asyncHandler(async(req,res) => {
     }
    )
 
-  const options ={
-    httpOnly:true,
-    secure:true
-   }
 
    return res
    .status(200)
@@ -198,11 +191,6 @@ console.log(incomingRefreshToken);
             throw new ApiError(401, "Refresh token is expired or used")
             
         }
-    
-      const options ={
-    httpOnly:true,
-    secure:true
-   }
     
         const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
         // console.log("sumit new",accessToken);
