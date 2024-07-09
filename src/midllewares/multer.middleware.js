@@ -1,22 +1,36 @@
-import multer from "multer";
-const fs = require('fs');
-const path = require('path');
+import multer from 'multer';
+import fs from 'fs/promises'; // Using fs promises for async file operations
+import path from 'path';
 
-const tempDir = path.join(__dirname, 'public', 'temp');
-if (!fs.existsSync(tempDir)) {
-  fs.mkdirSync(tempDir, { recursive: true });
-}
-const storage = multer.diskStorage({
-    
-    destination:function(req,file,cb){
-        //console.log("multer");
-        cb(null,tempDir)
-    },
-    filename: function(req,file,cb){
-        cb(null,file.originalname)
+const tempDir = path.join(process.cwd(), 'public', 'temp'); // Use process.cwd() to get the current working directory
+
+async function ensureTempDirExists() {
+    try {
+        await fs.mkdir(tempDir, { recursive: true });
+        console.log(`Directory '${tempDir}' created successfully.`);
+    } catch (err) {
+        if (err.code === 'EEXIST') {
+            console.log(`Directory '${tempDir}' already exists.`);
+        } else {
+            console.error(`Error creating directory '${tempDir}':`, err);
+            throw err;
+        }
     }
-})
+}
 
-export const upload = multer({
-    storage,
-})
+// Call the function to ensure tempDir exists
+ensureTempDirExists().catch(err => {
+    console.error('Error ensuring temp directory exists:', err);
+    process.exit(1); // Exit with non-zero status on error
+});
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, tempDir);
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+export const upload = multer({ storage });
