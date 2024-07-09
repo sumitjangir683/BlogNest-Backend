@@ -2,7 +2,7 @@ import multer from 'multer';
 import fs from 'fs/promises'; // Using fs promises for async file operations
 import path from 'path';
 
-const tempDir = path.join(process.cwd(), 'public', 'temp'); // Use process.cwd() to get the current working directory
+const tempDir = '/tmp'; // Use the /tmp directory for serverless environments
 
 async function ensureTempDirExists() {
     try {
