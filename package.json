@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
-  "build": "npm run create-temp-dir && vite build",
+    "dev": "nodemon src/index.js",
+    "build": "npm run create-temp-dir && vite build",
     "serve": "vite preview",
     "create-temp-dir": "mkdir -p public/temp"
   },
